@@ -46,8 +46,12 @@ public class heistStory {
         }
         return tasks;
     }
-    public String GoM(){
-
+    public String GoM(String person){
+     outcome=person;
+     String law="";
+     if(Objects.equals(outcome,"manager")){
+         law=""
+     }
     }
     public String planner(){
         String second="planner";
