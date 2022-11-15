@@ -1,4 +1,5 @@
 
+import java.io.ObjectStreamException;
 import java.util.Objects;
 
 public class heistStory {
@@ -20,6 +21,7 @@ public class heistStory {
             return planner();
         } else if ("muscle".equals(outcome)) {
             choice = 3;
+            return theMuscle();
         }
         return hello;
     }
@@ -36,6 +38,17 @@ public class heistStory {
             }
         }
     }
+    public String theMuscle(){
+        String second="muscle";
+        String tasks="";
+        if(second.equals(outcome)){
+            tasks= "You picked the muscle. you will go to the place with the robber. Will you take out the guards or the manager?";
+        }
+        return tasks;
+    }
+    public String GoM(){
+
+    }
     public String planner(){
         String second="planner";
         String task="";
@@ -47,15 +60,31 @@ public class heistStory {
     public String planPlace(String which){
         String decide="";
         if(Objects.equals(which, "bank")){
-            decide="Bet. We will rob a bank. Now you have to decide how much money from the bank you want?";
+            decide="Bet. We will rob a bank. Now you have to decide how much money from the bank you want?\n15,000 or 22,500 or 3,750";
         }
         if(Objects.equals(which,"gas station")){
-            decide="Bet. We will rob a gas station. Now you have to decide what you want from the gas station";
+            decide="Bet. We will rob a gas station. Now you have to decide what you want from the museum\npaintings, fossils, or artifacts";
+
         }
         if(Objects.equals(which,"rich person")){
-            decide="Bet. We will rob a gas Station\nNow you must decide how to sneak into the place";
+            decide="Bet. We will rob a rich person\nNow you must decide what do you want  in the rich person's house\njewelry, shoes, or clothing ";
+
         }
         return decide;
+    }
+    public String sneak(String sneaky){
+        outcome=sneaky;
+        String now="";
+        if(Objects.equals(sneaky, "jewelry")||Objects.equals(sneaky,"shoes")|| Objects.equals(sneaky,"clothing")){
+            now="You've decided on "+sneaky+" Will you keep it among you're friends or sell it?";
+        }
+        if(Objects.equals(sneaky, "15,000")||Objects.equals(sneaky,"22,500")|| Objects.equals(sneaky,"3,750")){
+            now="You've decided on "+sneaky+" Will you spread the money three ways or invest?";
+        }
+        if(Objects.equals(sneaky, "fossils")||Objects.equals(sneaky,"paintings")|| Objects.equals(sneaky,"artifacts")){
+            now="You've decided on "+sneaky+" Will you thrift the item or sell it on the black market?";
+        }
+        return now;
     }
     private String robber(){
         String first = "robber";
