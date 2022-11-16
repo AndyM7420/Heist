@@ -1,9 +1,9 @@
 
-import java.io.ObjectStreamException;
 import java.util.Objects;
 
 public class heistStory {
     String outcome;
+    String directions;
     int choice;
     public heistStory(String outcome) {
         this.outcome=outcome;
@@ -50,8 +50,9 @@ public class heistStory {
      outcome=person;
      String law="";
      if(Objects.equals(outcome,"manager")){
-         law=""
+         law="";
      }
+     return "law";
     }
     public String planner(){
         String second="planner";
@@ -111,10 +112,60 @@ public class heistStory {
     public String choiceGun(String choice){
         String noOrYes="";
             if(choice.equals("yes")){
-                noOrYes="Alright. You have now taken a hostage captive. The banker has negotiated with you get the key to the vault";
+                noOrYes="Alright. You have now taken a hostage captive. The banker has negotiated with you get the code to the vault\nYou grab all the money\nYou can chose to kill all the people and escape. Yes or No?";
             } else if(choice.equals("no")){
                 noOrYes="Alright. You will not take a hostage. The banker thinks you're not intimidating enough\nHe calls the police and you go to prison";
             }
         return noOrYes;
+    }
+    public String killOption(String kill){
+        String toBeKilled="";
+        if(kill.equals("yes")){
+            toBeKilled="You have killed all the people and will now escape with everyone's money\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go left,right, or straight?";
+
+        } else if(kill.equals("no")) {
+            toBeKilled="You will leave without killing anyone and escape\nLittle do you know a bystander had a phone and was calling the police\nthe cops are approaching as you jump into the vehicle. Do you tell the driver to go left,right, or straight?";
+        }
+        return toBeKilled;
+    }
+    public String directions(String direct){
+        directions=direct;
+        String leftSRight = switch (direct) {
+            case "left" ->
+                    "Driver goes left which leads to the nearest police station. All of you are arrested but will later get to negotiate.\nYou are now being interrogated. Do you take full blame as the main accomplice?";
+            case "straight" ->
+                    "Driver goes straight but ends up killing a bunch of bystanders. This leads to more cops on your trail\nYou stumble upon a gas station. Do you hide out there or steal another car(input hide or steal)";
+            case "right" -> "Driver goes right and starts to lose the cops\nYou find you're safe house and stay for three hours? Do you want to stay inside longer or go out and try to go another country.";
+            default -> "";
+        };
+        return leftSRight;
+    }
+    public String choice(String choice){
+        String future="";
+        if(directions.equals("left")){
+            if(choice.equals("yes")){
+                future="The cops now will take you to trail. You will be sentenced to 10 years in prison.\nHowever once out you're friends have left some money for you and plan to rob another place";
+            }
+            if(choice.equals("no")){
+                future="The cops will take all of you to trail. All of you besides the driver are sentenced to 10+ years. Once out all of you have separated and become poor.";
+            }
+        }
+        if(directions.equals("straight")){
+            if(choice.equals("hide")){
+                future="The cops found you and have sentenced all of you to 10+ years.";
+            }
+            if(choice.equals("steal")){
+                future="You find another car and continue to be on the lamb for years.\nYou find a place to stay and all of you're friends go their separate ways.";
+            }
+        }
+        if(directions.equals("right")){
+            if(choice.equals("stay")){
+                future="the cops have found you because you were a lazy pig.";
+            }
+            if(choice.equals("country")){
+                future="the cops never find you but you and your friends plan another heist.\nThis country has better police and you found.";
+            }
+        }
+        return future;
     }
 }

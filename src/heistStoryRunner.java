@@ -10,26 +10,29 @@ public class heistStoryRunner {
         System.out.println("Welcome to my heist story! Pick the role you want :). Have fun!");
         String outcomes= s.nextLine();
         heistStory user= new heistStory(outcomes);
-        if(Objects.equals(outcomes, "robber")) {
+        if(Objects.equals(outcomes, "robber")||Objects.equals(outcomes,"random")) {
             System.out.println(user.method(outcomes));
             String choice = s.nextLine();
             System.out.println(user.MoG(choice));
             String hos = s.nextLine();
             System.out.println(user.choiceGun(hos));
+            String killed= s.nextLine();
+            System.out.println(user.killOption(killed));
+            String direct=s.nextLine();
+            System.out.println(user.directions(direct));
         }
-        if(Objects.equals(outcomes,"planner")){
+        if(Objects.equals(outcomes,"planner")||Objects.equals(outcomes,"random")){
             System.out.println(user.method(outcomes));
             String choice = s.nextLine();
             System.out.println(user.planPlace(choice));
             String allow=s.nextLine();
             System.out.println(user.sneak(allow));
         }
-        if(Objects.equals(outcomes,"muscle")){
+        if(Objects.equals(outcomes,"muscle")||Objects.equals(outcomes,"random")){
             System.out.println(user.method(outcomes));
             String choice = s.nextLine();
-        }
 
-    }
+    }}
 }
 
 
