@@ -47,10 +47,12 @@ public class heistStory {
         return tasks;
     }
     public String GoM(String person){
-     outcome=person;
      String law="";
-     if(Objects.equals(outcome,"manager")){
-         law="";
+     if(Objects.equals(person,"manager")){
+         law="The guards take you out. Guess you should've taken out the guards first.";
+     }
+     if(Objects.equals(person,"guards")){
+         law="you have gotten rid of the guards. You see a hostage move. Do you punch him or stab him?(enter punch or stab)";
      }
      return "law";
     }
@@ -111,7 +113,7 @@ public class heistStory {
     }
     public String choiceGun(String choice){
         String noOrYes="";
-            if(choice.equals("yes")){
+            if(choice.equals("yes")) {
                 noOrYes="Alright. You have now taken a hostage captive. The banker has negotiated with you get the code to the vault\nYou grab all the money\nYou can chose to kill all the people and escape. Yes or No?";
             } else if(choice.equals("no")){
                 noOrYes="Alright. You will not take a hostage. The banker thinks you're not intimidating enough\nHe calls the police and you go to prison";
@@ -140,14 +142,14 @@ public class heistStory {
         };
         return leftSRight;
     }
-    public String choice(String choice){
+    public String choiceForFuture(String choice){
         String future="";
         if(directions.equals("left")){
             if(choice.equals("yes")){
-                future="The cops now will take you to trail. You will be sentenced to 10 years in prison.\nHowever once out you're friends have left some money for you and plan to rob another place";
+                future="The cops now will take you to trial. You will be sentenced to 10 years in prison.\nHowever once out you're friends have left some money for you and plan to rob another place";
             }
             if(choice.equals("no")){
-                future="The cops will take all of you to trail. All of you besides the driver are sentenced to 10+ years. Once out all of you have separated and become poor.";
+                future="The cops will take all of you to trial. All of you besides the driver are sentenced to 10+ years. Once out all of you have separated and become poor.";
             }
         }
         if(directions.equals("straight")){
@@ -163,7 +165,7 @@ public class heistStory {
                 future="the cops have found you because you were a lazy pig.";
             }
             if(choice.equals("country")){
-                future="the cops never find you but you and your friends plan another heist.\nThis country has better police and you found.";
+                future="the cops never find you but you and your friends plan another heist.\nThis country has better police and you are found.";
             }
         }
         return future;
