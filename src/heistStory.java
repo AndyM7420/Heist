@@ -50,17 +50,49 @@ public class heistStory {
      String law="";
      if(Objects.equals(person,"manager")){
          law="The guards take you out. Guess you should've taken out the guards first.";
+         person="die";
+         outcome=person;
+         return person;
      }
      if(Objects.equals(person,"guards")){
          law="you have gotten rid of the guards. You see a hostage move. Do you punch him or stab him?(enter punch or stab)";
      }
-     return "law";
+     return law;
     }
+    public String punchOrStab(String stab){
+        String punchOStab="";
+
+        if(Objects.equals(stab,"stab")){
+            punchOStab="You stab him and he bleeds to death. Their wife was present do you kill her swell?.\n(input yes or no)";
+        }
+        if(Objects.equals(stab,"punch")){
+            punchOStab="You punch him but it turns out he is a professional kick-boxer.\nHe f*cks you up till you are almost dead. Do you shoot him or fight him off?";
+
+        }
+        return punchOStab;
+    }
+    public String wifeOrBoxer(String wife){
+        String wifeOrBoxer="";
+        if(Objects.equals(wife,"yes")){
+            wifeOrBoxer="BOOM! Wife is also dead. Her sister was also present.\nDo you kill her too?";
+        }
+        if(Objects.equals(wife,"no")){
+            wifeOrBoxer="Alr Wife is kept alive but the guys brother is here too.\nDo you kill him?";
+        }
+        if(Objects.equals(wife,"shoot")){
+            wifeOrBoxer="LFG!He dies and you left bruised but fine\nAnother bystander calls you weak. Do you kill him?";
+        }
+        if(Objects.equals(wife,"fight")){
+            wifeOrBoxer="UH OH. The boxer overpowers. Thankfully the robber stabs him.Now you can choose to finish him off or save him?";
+        }
+        return wifeOrBoxer;
+    }
+//planner decisions
     public String planner(){
         String second="planner";
         String task="";
         if(second.equals(outcome)){
-            task= "You picked the hardest task. You will plan the task. Where do you want to rob?\nbank, gas station, rich person";
+            task= "You picked the hardest task. You will plan the task. Where do you want to rob?\nbank, museum, rich person";
         }
         return task;
     }
@@ -69,7 +101,7 @@ public class heistStory {
         if(Objects.equals(which, "bank")){
             decide="Bet. We will rob a bank. Now you have to decide how much money from the bank you want?\n15,000 or 22,500 or 3,750";
         }
-        if(Objects.equals(which,"gas station")){
+        if(Objects.equals(which,"museum")){
             decide="Bet. We will rob a gas station. Now you have to decide what you want from the museum\npaintings, fossils, or artifacts";
 
         }
@@ -93,6 +125,29 @@ public class heistStory {
         }
         return now;
     }
+    public String spend(String affect){
+        String decision="";
+        if(Objects.equals(affect,"friends")){
+            decision="You will keep the "+outcome+" with you're friends."+"\n"+"Where will we store the "+outcome+"?\nYou're house, a safe, or in a money laundry business";
+        }
+        if(Objects.equals(affect,"sell")){
+            decision="Where will we sell the "+outcome+"  \nIn a pawn shop, to our friends, or d*mb*ss in the street?";
+        }
+        if(Objects.equals(affect,"spread")){
+            decision="We will split the money evenly\nHowever, one of us needs to hold it for a bit. The robber, planner, or muscle?";
+        }
+        if(Objects.equals(affect,"invest")){
+            decision="Will we use the "+outcome+" for dr*gs, weapons, or food?";
+        }
+        if(Objects.equals(affect,"thrift")){
+            decision="We will thrift the "+outcome+" to another foreign museum or to a regular thrift store?";
+        }
+        if(Objects.equals(affect,"black market")){
+            decision="Will we sell it for a specific amount of money or trade it for resources?";
+        }
+        return decision;
+    }
+    //ROBBER DECISIONS
     private String robber(){
         String first = "robber";
         if(Objects.equals(first, outcome)){
@@ -169,5 +224,9 @@ public class heistStory {
             }
         }
         return future;
+    }
+
+    public String toString() {
+        return "Hello";
     }
 }
