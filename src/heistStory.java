@@ -3,10 +3,15 @@ import java.util.Objects;
 
 public class heistStory {
     String outcome;
+    String userInput;
     String directions;
     int choice;
     public heistStory(String outcome) {
         this.outcome=outcome;
+        userInput=outcome;
+    }
+    public void newInput(String newOutcome){
+        outcome=newOutcome;
     }
     public String method(String hello){
         if ("random".equals(this.outcome)) {
@@ -25,6 +30,24 @@ public class heistStory {
         }
         return hello;
     }
+    public String decisions(String decision){
+        if ("random".equals(this.outcome)) {
+            choice = 4;
+            random(choice);
+        }
+        if ("robber".equals(this.outcome)) {
+            choice = 1;
+            return robber();
+        } else if ("planner".equals(outcome)) {
+            choice = 2;
+            return planner();
+        } else if ("muscle".equals(outcome)) {
+            choice = 3;
+            return theMuscle();
+        }
+        return decision;
+    }
+
     private void random(int random){
         int four;
         if(random==4){
@@ -49,12 +72,14 @@ public class heistStory {
     public String GoM(String person){
      String law="";
      if(Objects.equals(person,"manager")){
+         userInput="manager";
          law="The guards take you out. Guess you should've taken out the guards first.";
          person="die";
          outcome=person;
          return person;
      }
      if(Objects.equals(person,"guards")){
+         userInput="guards";
          law="you have gotten rid of the guards. You see a hostage move. Do you punch him or stab him?(enter punch or stab)";
      }
      return law;
@@ -63,9 +88,11 @@ public class heistStory {
         String punchOStab="";
 
         if(Objects.equals(stab,"stab")){
+            userInput="stab";
             punchOStab="You stab him and he bleeds to death. Their wife was present do you kill her swell?.\n(input yes or no)";
         }
         if(Objects.equals(stab,"punch")){
+            userInput="punch";
             punchOStab="You punch him but it turns out he is a professional kick-boxer.\nHe f*cks you up till you are almost dead. Do you shoot him or fight him off?";
 
         }
@@ -74,15 +101,19 @@ public class heistStory {
     public String wifeOrBoxer(String wife){
         String wifeOrBoxer="";
         if(Objects.equals(wife,"yes")){
+            userInput="yes";
             wifeOrBoxer="BOOM! Wife is also dead. Her sister was also present.\nDo you kill her too?";
         }
         if(Objects.equals(wife,"no")){
+            userInput="no";
             wifeOrBoxer="Alr Wife is kept alive but the guys brother is here too.\nDo you kill him?";
         }
         if(Objects.equals(wife,"shoot")){
+            userInput="shoot";
             wifeOrBoxer="LFG!He dies and you left bruised but fine\nAnother bystander calls you weak. Do you kill him?";
         }
         if(Objects.equals(wife,"fight")){
+            userInput="fight";
             wifeOrBoxer="UH OH. The boxer overpowers. Thankfully the robber stabs him.Now you can choose to finish him off or save him?";
         }
         return wifeOrBoxer;
@@ -99,15 +130,19 @@ public class heistStory {
     public String planPlace(String which){
         String decide="";
         if(Objects.equals(which, "bank")){
+            userInput="bank";
             decide="Bet. We will rob a bank. Now you have to decide how much money from the bank you want?\n15,000 or 22,500 or 3,750";
-        }
-        if(Objects.equals(which,"museum")){
+        } else if(Objects.equals(which,"museum")){
+            userInput="museum";
             decide="Bet. We will rob a gas station. Now you have to decide what you want from the museum\npaintings, fossils, or artifacts";
 
-        }
-        if(Objects.equals(which,"rich person")){
+        } else if(Objects.equals(which,"rich person")){
+            userInput="rich person";
             decide="Bet. We will rob a rich person\nNow you must decide what do you want  in the rich person's house\njewelry, shoes, or clothing ";
 
+        } else {
+            userInput="bozo";
+            decide="Try Again";
         }
         return decide;
     }
@@ -115,13 +150,17 @@ public class heistStory {
         outcome=sneaky;
         String now="";
         if(Objects.equals(sneaky, "jewelry")||Objects.equals(sneaky,"shoes")|| Objects.equals(sneaky,"clothing")){
+            userInput="jewelry";
             now="You've decided on "+sneaky+" Will you keep it among you're friends or sell it?";
-        }
-        if(Objects.equals(sneaky, "15,000")||Objects.equals(sneaky,"22,500")|| Objects.equals(sneaky,"3,750")){
+        } else if(Objects.equals(sneaky, "15,000")||Objects.equals(sneaky,"22,500")|| Objects.equals(sneaky,"3,750")){
+            userInput="15,000";
             now="You've decided on "+sneaky+" Will you spread the money three ways or invest?";
-        }
-        if(Objects.equals(sneaky, "fossils")||Objects.equals(sneaky,"paintings")|| Objects.equals(sneaky,"artifacts")){
+        } else if(Objects.equals(sneaky, "fossils")||Objects.equals(sneaky,"paintings")|| Objects.equals(sneaky,"artifacts")){
+            userInput="fossils";
             now="You've decided on "+sneaky+" Will you thrift the item or sell it on the black market?";
+        } else {
+            userInput="bozo";
+            now="Try Again";
         }
         return now;
     }
@@ -163,6 +202,8 @@ public class heistStory {
             return MoG+choiceGun(outcome);
         } else if(which.equals("machete")){
             MoG= "machete is it! Now you enter the bank and yell Freeze! Suddenly someone grabs the machete and you DIE! ";
+        } else {
+            MoG="Try Again";
         }
         return choiceGun("gun")+MoG;
     }
@@ -187,7 +228,8 @@ public class heistStory {
     }
     public String directions(String direct){
         directions=direct;
-        String leftSRight = switch (direct) {
+        String leftSRight;
+        leftSRight = switch (direct) {
             case "left" ->
                     "Driver goes left which leads to the nearest police station. All of you are arrested but will later get to negotiate.\nYou are now being interrogated. Do you take full blame as the main accomplice?";
             case "straight" ->
@@ -206,24 +248,27 @@ public class heistStory {
             if(choice.equals("no")){
                 future="The cops will take all of you to trial. All of you besides the driver are sentenced to 10+ years. Once out all of you have separated and become poor.";
             }
-        }
-        if(directions.equals("straight")){
+        } else if(directions.equals("straight")){
             if(choice.equals("hide")){
                 future="The cops found you and have sentenced all of you to 10+ years.";
             }
             if(choice.equals("steal")){
                 future="You find another car and continue to be on the lamb for years.\nYou find a place to stay and all of you're friends go their separate ways.";
             }
-        }
-        if(directions.equals("right")){
+        } else if(directions.equals("right")){
             if(choice.equals("stay")){
                 future="the cops have found you because you were a lazy pig.";
             }
             if(choice.equals("country")){
                 future="the cops never find you but you and your friends plan another heist.\nThis country has better police and you are found.";
             }
+        } else {
+            future="Try Again";
         }
         return future;
+    }
+    public  boolean checkWord(String word){
+        return word.equals(userInput);
     }
 
     public String toString() {
